@@ -1,0 +1,10 @@
+{
+  "name": "MAI \u2014 Personal AI",
+  "short_name": "MAI",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0c0e14",
+  "theme_color": "#10131b",
+  "description": "A local-first personal AI workspace with memory, planning, and user-controlled boundaries.",
+  "icons": []
+}

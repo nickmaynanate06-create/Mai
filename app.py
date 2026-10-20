@@ -5,7 +5,7 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 
 load_dotenv()
-app = FastAPI(title="Aster API", version="0.1.0")
+app = FastAPI(title="MAI API", version="0.1.0")
 
 class PlanRequest(BaseModel):
     goal: str = Field(min_length=1, max_length=2000)
@@ -23,7 +23,7 @@ class PlanResponse(BaseModel):
     safety_note: str
 
 def check_auth(authorization: str | None):
-    expected = os.getenv("ASTER_API_TOKEN")
+    expected = os.getenv("MAI_API_TOKEN")
     if not expected:
         raise HTTPException(status_code=503, detail="Server token is not configured.")
     if authorization != f"Bearer {expected}":
@@ -31,7 +31,7 @@ def check_auth(authorization: str | None):
 
 @app.get("/health")
 def health():
-    return {"ok": True, "service": "aster-api", "mode": "suggest_only"}
+    return {"ok": True, "service": "mai-api", "mode": "suggest_only"}
 
 @app.post("/plan", response_model=PlanResponse)
 def plan(req: PlanRequest, authorization: str | None = Header(default=None)):
